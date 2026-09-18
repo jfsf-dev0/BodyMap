@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Scan, Activity, FileText, BarChart3, Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Scan, Utensils, FileText, Smartphone, GraduationCap, ArrowRight, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group">
@@ -19,48 +19,55 @@ export default function Navbar() {
             <div className="flex items-center gap-1.5">
               <span className="font-bold tracking-tight text-white text-lg">BodyMap</span>
               <span className="rounded bg-emerald-500/20 border border-emerald-500/40 px-1.5 py-0.2 text-[10px] font-semibold text-emerald-300">
-                3D AI
+                PRO
               </span>
             </div>
             <span className="text-[10px] text-slate-400 font-mono-tech -mt-0.5 tracking-wider uppercase">
-              Bioantropometria Óptica
+              Clinical Nutrition & 3D AI
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-7 text-xs font-medium text-slate-300">
-          <Link href="#demo" className="hover:text-emerald-400 transition-colors">
-            Scanner Interativo
+        <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300 font-mono-tech">
+          <Link href="/consultorio" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+            <Utensils className="h-3.5 w-3.5 text-emerald-400" />
+            Prescrição TACO
           </Link>
-          <Link href="#tecnologia" className="hover:text-emerald-400 transition-colors">
-            Tecnologia
+          <Link href="/scanner" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+            <Scan className="h-3.5 w-3.5 text-cyan-400" />
+            Scanner 3D IA
           </Link>
-          <Link href="#comparativo" className="hover:text-emerald-400 transition-colors">
-            DEXA vs. BodyMap
+          <Link href="/app-paciente" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+            <Smartphone className="h-3.5 w-3.5 text-amber-400" />
+            App do Paciente
           </Link>
-          <Link href="#dossie" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+          <Link href="/dossie" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
             <FileText className="h-3.5 w-3.5 text-emerald-400" />
             Dossiê 9pt
           </Link>
-          <Link href="#planos" className="hover:text-emerald-400 transition-colors">
-            Planos
+          <Link href="/#comparativo-webdiet" className="hover:text-emerald-400 transition-colors">
+            vs. WebDiet
+          </Link>
+          <Link href="/graduacao" className="hover:text-emerald-400 transition-colors flex items-center gap-1 text-slate-400">
+            <GraduationCap className="h-3.5 w-3.5 text-slate-400" />
+            Graduação
           </Link>
         </nav>
 
         {/* Action CTAs */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 font-mono-tech">
           <Link
-            href="/dashboard"
-            className="text-xs font-medium text-slate-300 hover:text-white px-3 py-1.5 rounded-md hover:bg-slate-900 transition-colors"
+            href="/consultorio"
+            className="text-xs font-semibold text-slate-200 hover:text-white px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/80 hover:bg-slate-800 transition-colors"
           >
-            Portal Clínico
+            Acessar Consultório
           </Link>
           <Link
             href="/scanner"
-            className="flex items-center gap-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 px-3.5 py-1.5 text-xs font-semibold text-slate-950 shadow-sm shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all"
+            className="flex items-center gap-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 px-3.5 py-1.5 text-xs font-bold text-slate-950 shadow-sm shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all cursor-pointer"
           >
-            <span>Fazer Scan 3D</span>
+            <span>Scan 3D Grátis</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
@@ -77,56 +84,63 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-800 bg-slate-950/95 px-4 pt-3 pb-5 space-y-3">
+        <div className="md:hidden border-b border-slate-800 bg-slate-950/95 px-4 pt-3 pb-5 space-y-2.5 font-mono-tech">
           <Link
-            href="#demo"
+            href="/consultorio"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-slate-300 hover:text-emerald-400 py-1"
+            className="block text-xs font-medium text-slate-300 hover:text-emerald-400 py-1"
           >
-            Scanner Interativo
+            Prescrição & Dieta TACO
           </Link>
           <Link
-            href="#tecnologia"
+            href="/scanner"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-slate-300 hover:text-emerald-400 py-1"
+            className="block text-xs font-medium text-slate-300 hover:text-emerald-400 py-1"
           >
-            Tecnologia & Validação
+            Scanner 3D Óptico por IA
           </Link>
           <Link
-            href="#comparativo"
+            href="/app-paciente"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-slate-300 hover:text-emerald-400 py-1"
+            className="block text-xs font-medium text-slate-300 hover:text-emerald-400 py-1"
           >
-            Comparativo com DEXA & Bioimpedância
+            Aplicativo do Paciente (PWA)
           </Link>
           <Link
             href="/dossie"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-slate-300 hover:text-emerald-400 py-1"
+            className="block text-xs font-medium text-slate-300 hover:text-emerald-400 py-1"
           >
-            Ver Dossiê Editorial 9pt
+            Dossiê Editorial 9pt (A4)
           </Link>
           <Link
-            href="#planos"
+            href="/#comparativo-webdiet"
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-sm font-medium text-slate-300 hover:text-emerald-400 py-1"
+            className="block text-xs font-medium text-slate-300 hover:text-emerald-400 py-1"
           >
-            Planos e Preços
+            Por que migrar do WebDiet
           </Link>
-          <div className="pt-2 border-t border-slate-800/80 flex flex-col gap-2">
+          <Link
+            href="/graduacao"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-xs font-medium text-slate-300 hover:text-emerald-400 py-1"
+          >
+            Plano Graduação (Gratuito)
+          </Link>
+          <div className="pt-3 border-t border-slate-800/80 flex flex-col gap-2">
             <Link
-              href="/dashboard"
+              href="/consultorio"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-2 text-xs font-medium text-slate-200 bg-slate-900 rounded-lg border border-slate-800"
             >
-              Portal Clínico do Nutricionista
+              Acessar Consultório
             </Link>
             <Link
               href="/scanner"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2 text-xs font-semibold text-slate-950 bg-emerald-500 hover:bg-emerald-400 rounded-lg"
+              className="w-full text-center py-2 text-xs font-bold text-slate-950 bg-emerald-500 hover:bg-emerald-400 rounded-lg"
             >
-              Iniciar Scan 3D Agora
+              Fazer Scan 3D Agora
             </Link>
           </div>
         </div>

@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Camera, Check, AlertCircle, Info, Sparkles } from 'lucide-react';
+import React from 'react';
+import { Camera, Check } from 'lucide-react';
 
 interface CameraGuideOverlayProps {
   viewMode: 'front' | 'side';
@@ -10,18 +10,15 @@ interface CameraGuideOverlayProps {
 
 export default function CameraGuideOverlay({ viewMode, onCaptureMock }: CameraGuideOverlayProps) {
   return (
-    <div className="relative aspect-[3/4] max-h-[500px] w-full rounded-2xl border-2 border-dashed border-emerald-500/40 bg-slate-950/90 overflow-hidden flex flex-col items-center justify-between p-4 sm:p-6 shadow-inner">
-      {/* Background Subtle Tech Scan grid */}
-      <div className="absolute inset-0 bg-grid-tech-dark opacity-40 pointer-events-none" />
-
+    <div className="relative aspect-[3/4] max-h-[500px] w-full rounded-2xl border border-slate-300 bg-slate-900 overflow-hidden flex flex-col items-center justify-between p-4 sm:p-6 shadow-md">
       {/* Top Status Bar */}
       <div className="relative z-10 flex w-full items-center justify-between">
-        <div className="flex items-center gap-1.5 rounded-full bg-slate-900/90 border border-slate-700 px-3 py-1 text-xs font-mono-tech text-emerald-400">
-          <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+        <div className="flex items-center gap-1.5 rounded-full bg-slate-800 border border-slate-700 px-3 py-1 text-xs font-mono-tech text-emerald-400">
+          <div className="h-2 w-2 rounded-full bg-emerald-400" />
           <span>{viewMode === 'front' ? 'VISTA FRONTAL (0°)' : 'VISTA SAGITAL (90°)'}</span>
         </div>
-        <div className="rounded-full bg-slate-900/90 border border-slate-700 px-2.5 py-1 text-[10px] font-mono-tech text-slate-300">
-          Distância Ótima: 2.2m
+        <div className="rounded-full bg-slate-800 border border-slate-700 px-2.5 py-1 text-[10px] font-mono-tech text-slate-300">
+          Distância Recomendada: ~2.0m
         </div>
       </div>
 
@@ -29,7 +26,7 @@ export default function CameraGuideOverlay({ viewMode, onCaptureMock }: CameraGu
       <div className="relative z-10 my-auto flex h-[70%] w-full items-center justify-center pointer-events-none">
         <svg
           viewBox="0 0 200 320"
-          className="h-full w-auto stroke-emerald-400/50 fill-emerald-500/5 stroke-[1.5] stroke-dasharray-[4,3] drop-shadow-[0_0_15px_rgba(16,185,129,0.3)] animate-pulse"
+          className="h-full w-auto stroke-emerald-400/70 fill-emerald-500/10 stroke-[1.5] stroke-dasharray-[4,3]"
         >
           {viewMode === 'front' ? (
             <g>
@@ -42,9 +39,9 @@ export default function CameraGuideOverlay({ viewMode, onCaptureMock }: CameraGu
               {/* Legs */}
               <path d="M 75 195 L 70 300 M 125 195 L 130 300" />
               {/* Feet Line */}
-              <line x1="60" y1="305" x2="140" y2="305" strokeWidth="1" strokeDasharray="" />
+              <line x1="60" y1="305" x2="140" y2="305" strokeWidth="1" />
               {/* Alignment Center Crosshair */}
-              <circle cx="100" cy="150" r="4" fill="#10b981" />
+              <circle cx="100" cy="150" r="3.5" fill="#10b981" />
             </g>
           ) : (
             <g>
@@ -63,20 +60,20 @@ export default function CameraGuideOverlay({ viewMode, onCaptureMock }: CameraGu
 
         {/* Alignment instructions box in center */}
         <div className="absolute inset-x-0 bottom-2 text-center">
-          <span className="rounded-md bg-slate-950/80 px-2.5 py-1 text-[11px] font-mono-tech text-slate-300 border border-slate-800">
+          <span className="rounded-md bg-slate-900/90 px-3 py-1 text-[11px] font-mono-tech text-slate-200 border border-slate-700">
             {viewMode === 'front'
-              ? 'Posicione o corpo inteiro dentro da silhueta verde'
-              : 'Fique totalmente de perfil com a coluna ereta'}
+              ? 'Enquadre o corpo inteiro alinhado aos marcadores'
+              : 'Fique totalmente de perfil com postura ereta'}
           </span>
         </div>
       </div>
 
       {/* Bottom Checklist & Trigger */}
-      <div className="relative z-10 w-full flex flex-col gap-2 pt-2 border-t border-slate-800/80">
-        <div className="flex items-center justify-between text-[10px] font-mono-tech text-slate-400">
+      <div className="relative z-10 w-full flex flex-col gap-2 pt-2 border-t border-slate-800">
+        <div className="flex items-center justify-between text-[10px] font-mono-tech text-slate-300">
           <div className="flex items-center gap-1 text-emerald-400">
             <Check className="h-3 w-3" />
-            <span>Iluminação Frontal OK</span>
+            <span>Iluminação Uniforme</span>
           </div>
           <div className="flex items-center gap-1 text-emerald-400">
             <Check className="h-3 w-3" />
@@ -92,10 +89,10 @@ export default function CameraGuideOverlay({ viewMode, onCaptureMock }: CameraGu
           <button
             type="button"
             onClick={onCaptureMock}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-emerald-500/20 transition-all"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 py-2.5 text-xs font-semibold text-white transition-colors cursor-pointer"
           >
             <Camera className="h-4 w-4" />
-            <span>Capturar Foto {viewMode === 'front' ? 'Frontal' : 'Lateral'}</span>
+            <span>Capturar Imagem {viewMode === 'front' ? 'Frontal' : 'Lateral'}</span>
           </button>
         )}
       </div>

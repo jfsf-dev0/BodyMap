@@ -26,15 +26,15 @@ export default function ClinicalDossierA4({
   return (
     <div className="w-full flex flex-col items-center py-6 print:py-0">
       {/* Top Floating Print Bar (Hidden on Print) */}
-      <div className="no-print mb-6 flex flex-wrap items-center justify-between gap-3 w-full max-w-4xl rounded-xl border border-slate-800 bg-slate-900/90 p-3.5 backdrop-blur-md">
+      <div className="no-print mb-6 flex flex-wrap items-center justify-between gap-3 w-full max-w-4xl rounded-xl border border-slate-200 bg-white p-3.5 shadow-sm">
         <div className="flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">
             <Scan className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-xs font-bold text-white">Dossiê Editorial A4 (9pt) — BodyMap Pro</div>
-            <div className="text-[10px] text-slate-400 font-mono-tech">
-              Formatado para 2 páginas exatas • Pronto para impressão ou PDF
+            <div className="text-xs font-bold text-slate-900">Dossiê Editorial A4 (9pt) — BodyMap Pro</div>
+            <div className="text-[10px] text-slate-500 font-mono-tech">
+              Formatado para 2 páginas exatas • Pronto para impressão física ou salvar como PDF
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@ export default function ClinicalDossierA4({
           <button
             type="button"
             onClick={handlePrint}
-            className="flex items-center gap-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 px-3.5 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-emerald-500/20 transition-all cursor-pointer"
+            className="flex items-center gap-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition-colors cursor-pointer"
           >
             <Printer className="h-3.5 w-3.5" />
             <span>Imprimir / Salvar PDF</span>

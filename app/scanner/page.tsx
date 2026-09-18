@@ -17,10 +17,8 @@ import {
   ArrowRight,
   ArrowLeft,
   CheckCircle2,
-  Sparkles,
   FileText,
   User,
-  ShieldCheck,
   RotateCcw,
 } from 'lucide-react';
 
@@ -50,22 +48,22 @@ export default function ScannerPage() {
   const handleStartProcessing = () => {
     setStep(3);
     setProcessingProgress(15);
-    setProcessingStepLabel('1/4: Segmentando silhueta e removendo ruído de fundo...');
+    setProcessingStepLabel('1/4: Segmentando silhueta corporal e calibrando escala métrica...');
 
     setTimeout(() => {
       setProcessingProgress(45);
-      setProcessingStepLabel('2/4: Extraindo 33 pontos de inflexão anatômica (Pose Landmarks)...');
-    }, 1200);
+      setProcessingStepLabel('2/4: Extraindo 33 marcos anatômicos de referência...');
+    }, 1000);
 
     setTimeout(() => {
       setProcessingProgress(75);
-      setProcessingStepLabel('3/4: Reconstruindo malha volumétrica 3D e densitometria Siri/Brozek...');
-    }, 2400);
+      setProcessingStepLabel('3/4: Reconstruindo malha volumétrica e aplicando equações Siri/Brozek...');
+    }, 2000);
 
     setTimeout(() => {
       setProcessingProgress(98);
-      setProcessingStepLabel('4/4: Calibrando índice de gordura visceral e risco cardiovascular OMS...');
-    }, 3600);
+      setProcessingStepLabel('4/4: Consolidando perimetria e estratificação cardiovascular...');
+    }, 3000);
 
     setTimeout(() => {
       // Computa medições realistas baseadas nas entradas do usuário
@@ -99,34 +97,39 @@ export default function ScannerPage() {
         measurements: baseMeasurements,
         biomarkers,
         posture: {
-          shoulderTiltDegrees: 0.6,
-          pelvicTiltDegrees: 0.3,
-          headForwardTiltMm: 8,
-          notes: ['Simetria corporal excelente', 'Alinhamento escapular dentro dos parâmetros'],
+          shoulderTiltDegrees: 1.2,
+          pelvicTiltDegrees: 0.8,
+          headForwardTiltMm: 15,
+          notes: ['Leve anteriorização de ombros', 'Alinhamento pélvico neutro'],
         },
-        confidenceScorePercent: 99.1,
-        clinicalNotes: `Mapeamento óptico realizado com sucesso. Densidade corporal calibrada com padrão de eutrofia atlética.`,
+        confidenceScorePercent: 98.4,
+        clinicalNotes: 'Hipertrofia Limpa 2.700 kcal',
       };
 
       setScanResult(newScan);
       setStep(4);
-    }, 4400);
+    }, 3800);
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 flex flex-col justify-between">
       <Navbar />
 
-      <main className="mx-auto max-w-5xl w-full px-4 py-8 sm:px-6 lg:px-8 flex-1">
-        {/* Step Indicator Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+      <main className="mx-auto max-w-7xl w-full px-4 py-8 sm:px-6 lg:px-8 flex-1">
+        {/* Top Professional Header Bar */}
+        <div className="border-b border-slate-200 pb-6 mb-8">
+          <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-mono-tech text-emerald-400 uppercase tracking-wider">
-                Mapeamento Corporal 3D
-              </span>
-              <h1 className="text-2xl font-bold text-white mt-0.5">
-                Scanner Bioantropométrico por Inteligência Artificial
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-mono-tech uppercase text-emerald-700 font-bold">
+                  Bioantropometria Óptica
+                </span>
+                <span className="rounded bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-mono-tech text-emerald-800 font-semibold">
+                  Protocolo DEXA Calibrado
+                </span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+                Novo Escaneamento Corporal 3D
               </h1>
             </div>
 
@@ -139,15 +142,15 @@ export default function ScannerPage() {
               ].map((s) => (
                 <div
                   key={s.num}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded-md border text-[11px] ${
+                  className={`flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs ${
                     step === s.num
-                      ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-bold'
+                      ? 'bg-emerald-50 border-emerald-300 text-emerald-800 font-bold'
                       : step > s.num
-                      ? 'bg-slate-900 border-slate-800 text-slate-400'
-                      : 'opacity-40 border-transparent text-slate-600'
+                      ? 'bg-white border-slate-200 text-slate-700'
+                      : 'bg-slate-50 border-slate-200 text-slate-400'
                   }`}
                 >
-                  <span>{s.num}.</span>
+                  <span className="font-semibold">{s.num}.</span>
                   <span>{s.label}</span>
                 </div>
               ))}
@@ -159,40 +162,40 @@ export default function ScannerPage() {
         {/* STEP 1: DADOS BIOMÉTRICOS BÁSICOS                            */}
         {/* ============================================================ */}
         {step === 1 && (
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 sm:p-8 backdrop-blur-md max-w-2xl mx-auto shadow-2xl">
-            <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono-tech mb-2">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm max-w-2xl mx-auto">
+            <div className="flex items-center gap-2 text-emerald-700 text-xs font-mono-tech font-semibold mb-2">
               <User className="h-4 w-4" />
-              <span>Etapa 1 de 4: Parâmetros do Paciente</span>
+              <span>Etapa 1 de 4: Parâmetros Físicos do Paciente</span>
             </div>
-            <h2 className="text-xl font-bold text-white mb-2">
-              Identificação & Parâmetros Físicos
+            <h2 className="text-xl font-bold text-slate-900 mb-2">
+              Identificação & Medidas de Entrada
             </h2>
-            <p className="text-xs text-slate-400 mb-6">
-              Estes dados são utilizados pelas equações de densitometria e para normalização da escala óptica de profundidade.
+            <p className="text-xs text-slate-600 mb-6 font-sans">
+              Estes parâmetros alimentam os modelos matemáticos de densitometria e garantem a correta calibração de escala óptica volumétrica.
             </p>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-mono-tech uppercase text-slate-400 mb-1">
+                <label className="block text-xs font-mono-tech uppercase text-slate-600 mb-1 font-medium">
                   Nome Completo do Paciente
                 </label>
                 <input
                   type="text"
                   value={patientName}
                   onChange={(e) => setPatientName(e.target.value)}
-                  className="w-full rounded-lg border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none font-sans"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-emerald-600 focus:outline-none font-sans"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono-tech uppercase text-slate-400 mb-1">
-                    Sexo Biológico (Equação)
+                  <label className="block text-xs font-mono-tech uppercase text-slate-600 mb-1 font-medium">
+                    Sexo Biológico (Fórmula)
                   </label>
                   <select
                     value={sex}
                     onChange={(e) => setSex(e.target.value as BiologicalSex)}
-                    className="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none font-mono-tech"
+                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 focus:border-emerald-600 focus:outline-none font-mono-tech"
                   >
                     <option value="male">Masculino</option>
                     <option value="female">Feminino</option>
@@ -200,33 +203,33 @@ export default function ScannerPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono-tech uppercase text-slate-400 mb-1">
+                  <label className="block text-xs font-mono-tech uppercase text-slate-600 mb-1 font-medium">
                     Idade (Anos)
                   </label>
                   <input
                     type="number"
                     value={age}
                     onChange={(e) => setAge(Number(e.target.value))}
-                    className="w-full rounded-lg border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none font-mono-tech"
+                    className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-emerald-600 focus:outline-none font-mono-tech"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono-tech uppercase text-slate-400 mb-1">
+                  <label className="block text-xs font-mono-tech uppercase text-slate-600 mb-1 font-medium">
                     Estatura (cm)
                   </label>
                   <input
                     type="number"
                     value={heightCm}
                     onChange={(e) => setHeightCm(Number(e.target.value))}
-                    className="w-full rounded-lg border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none font-mono-tech"
+                    className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-emerald-600 focus:outline-none font-mono-tech"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono-tech uppercase text-slate-400 mb-1">
+                  <label className="block text-xs font-mono-tech uppercase text-slate-600 mb-1 font-medium">
                     Massa Corporal (Peso em kg)
                   </label>
                   <input
@@ -234,7 +237,7 @@ export default function ScannerPage() {
                     step="0.1"
                     value={weightKg}
                     onChange={(e) => setWeightKg(Number(e.target.value))}
-                    className="w-full rounded-lg border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-sm text-white focus:border-emerald-500 focus:outline-none font-mono-tech"
+                    className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-emerald-600 focus:outline-none font-mono-tech"
                   />
                 </div>
               </div>
@@ -244,7 +247,7 @@ export default function ScannerPage() {
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-5 py-3 text-xs font-bold text-slate-950 shadow-md shadow-emerald-500/20 transition-all cursor-pointer"
+                className="flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 py-3 text-xs font-semibold text-white shadow-sm transition-colors cursor-pointer"
               >
                 <span>Avançar para Captura de Fotos</span>
                 <ArrowRight className="h-4 w-4" />
@@ -257,26 +260,26 @@ export default function ScannerPage() {
         {/* STEP 2: CAPTURA OU UPLOAD DAS DUAS FOTOS                     */}
         {/* ============================================================ */}
         {step === 2 && (
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 sm:p-8 backdrop-blur-md shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-800/80 pb-4 mb-6">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
               <div>
-                <div className="text-xs font-mono-tech text-emerald-400 uppercase tracking-wider">
-                  Etapa 2 de 4: Captura Visual
+                <div className="text-xs font-mono-tech text-emerald-700 uppercase tracking-wider font-semibold">
+                  Etapa 2 de 4: Captura Óptica
                 </div>
-                <h2 className="text-xl font-bold text-white mt-0.5">
+                <h2 className="text-xl font-bold text-slate-900 mt-0.5">
                   Posicionamento & 2 Fotos de Smartphone
                 </h2>
               </div>
 
               {/* Angle Switcher */}
-              <div className="flex items-center rounded-lg bg-slate-950 p-1 border border-slate-800 text-xs font-mono-tech">
+              <div className="flex items-center rounded-lg bg-slate-100 p-1 border border-slate-200 text-xs font-mono-tech">
                 <button
                   type="button"
                   onClick={() => setActiveCameraView('front')}
                   className={`px-3 py-1.5 rounded transition-all ${
                     activeCameraView === 'front'
-                      ? 'bg-emerald-500 text-slate-950 font-bold'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'bg-emerald-600 text-white font-semibold shadow-sm'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   1. Foto Frontal (0°)
@@ -286,17 +289,17 @@ export default function ScannerPage() {
                   onClick={() => setActiveCameraView('side')}
                   className={`px-3 py-1.5 rounded transition-all ${
                     activeCameraView === 'side'
-                      ? 'bg-emerald-500 text-slate-950 font-bold'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'bg-emerald-600 text-white font-semibold shadow-sm'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
-                  2. Foto Perfil (90°)
+                  2. Foto Lateral (90°)
                 </button>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-              {/* Camera Guide Silhouette (7 cols) */}
+              {/* Camera Guide (7 cols) */}
               <div className="md:col-span-7">
                 <CameraGuideOverlay
                   viewMode={activeCameraView}
@@ -312,42 +315,42 @@ export default function ScannerPage() {
 
               {/* Instructions & File Upload Alternative (5 cols) */}
               <div className="md:col-span-5 space-y-4">
-                <div className="rounded-xl bg-slate-950 border border-slate-800 p-4">
-                  <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono-tech mb-2">
-                    Diretrizes para Máxima Precisão
+                <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
+                  <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono-tech mb-2">
+                    Diretrizes para Precisão Diagnóstica
                   </h4>
-                  <ul className="space-y-2 text-xs text-slate-300">
+                  <ul className="space-y-2 text-xs text-slate-600 font-sans">
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
-                      <span>Roupas justas ao corpo (legging, shorts curtos ou roupas de banho).</span>
+                      <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span>Roupas aderentes ao corpo (leggings, shorts curtos ou roupas de banho).</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
-                      <span>Braços afastados do tronco em cerca de 15 graus.</span>
+                      <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span>Braços ligeiramente afastados do tronco em 15 graus.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
-                      <span>Pés paralelos alinhados à largura dos quadris.</span>
+                      <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span>Pés paralelos na largura dos quadris.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
-                      <span>Ambiente bem iluminado, sem sombras fortes nas laterais.</span>
+                      <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span>Iluminação uniforme e ambiente bem claro.</span>
                     </li>
                   </ul>
                 </div>
 
-                <div className="border border-dashed border-slate-800 rounded-xl p-4 text-center bg-slate-950/40">
-                  <Upload className="h-6 w-6 text-slate-500 mx-auto mb-2" />
-                  <div className="text-xs font-semibold text-white">Prefere subir fotos já existentes?</div>
+                <div className="border border-dashed border-slate-300 rounded-xl p-4 text-center bg-slate-50/50">
+                  <Upload className="h-6 w-6 text-slate-400 mx-auto mb-2" />
+                  <div className="text-xs font-semibold text-slate-800">Prefere carregar fotos já capturadas?</div>
                   <div className="text-[11px] text-slate-500 font-mono-tech mt-0.5">
-                    Formatos JPG, PNG ou HEIC de celular
+                    Formatos JPG, PNG ou HEIC direto do celular
                   </div>
                   <button
                     type="button"
                     onClick={handleStartProcessing}
-                    className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-300 hover:bg-slate-800 transition-colors"
+                    className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
                   >
-                    <span>Simular Upload & Processar</span>
+                    <span>Carregar Arquivos & Processar</span>
                   </button>
                 </div>
 
@@ -355,7 +358,7 @@ export default function ScannerPage() {
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="flex items-center gap-1 text-xs text-slate-400 hover:text-white"
+                    className="flex items-center gap-1 text-xs text-slate-600 hover:text-slate-900"
                   >
                     <ArrowLeft className="h-3.5 w-3.5" />
                     <span>Voltar</span>
@@ -364,7 +367,7 @@ export default function ScannerPage() {
                   <button
                     type="button"
                     onClick={handleStartProcessing}
-                    className="flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-5 py-2.5 text-xs font-bold text-slate-950 shadow-md transition-all cursor-pointer"
+                    className="flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors cursor-pointer"
                   >
                     <span>Iniciar Análise Óptica 3D</span>
                     <ArrowRight className="h-4 w-4" />
@@ -376,33 +379,32 @@ export default function ScannerPage() {
         )}
 
         {/* ============================================================ */}
-        {/* STEP 3: TELA DE PROCESSAMENTO DA IA COM SCANNER BAR         */}
+        {/* STEP 3: TELA DE PROCESSAMENTO COM PROGRESS BAR              */}
         {/* ============================================================ */}
         {step === 3 && (
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-12 backdrop-blur-md shadow-2xl text-center max-w-xl mx-auto my-12">
-            <div className="relative mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-400">
-              <Scan className="h-10 w-10 animate-pulse" />
-              <div className="absolute inset-0 rounded-2xl border border-emerald-400 animate-ping opacity-25" />
+          <div className="rounded-2xl border border-slate-200 bg-white p-12 shadow-sm text-center max-w-xl mx-auto my-12">
+            <div className="relative mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700">
+              <Scan className="h-8 w-8 animate-pulse" />
             </div>
 
-            <h3 className="text-xl font-bold text-white">
+            <h3 className="text-xl font-bold text-slate-900">
               Processando Bioantropometria 3D
             </h3>
-            <p className="mt-2 text-xs text-slate-400 font-mono-tech max-w-sm mx-auto">
+            <p className="mt-2 text-xs text-slate-600 font-mono-tech max-w-sm mx-auto">
               {processingStepLabel}
             </p>
 
             {/* Progress Bar */}
-            <div className="mt-8 w-full bg-slate-800 rounded-full h-2.5 overflow-hidden border border-slate-700/60">
+            <div className="mt-8 w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
               <div
-                className="bg-gradient-to-r from-emerald-500 to-cyan-400 h-full rounded-full transition-all duration-500 shadow-[0_0_12px_#10b981]"
+                className="bg-emerald-600 h-full rounded-full transition-all duration-500"
                 style={{ width: `${processingProgress}%` }}
               />
             </div>
 
             <div className="mt-4 flex items-center justify-between text-[11px] font-mono-tech text-slate-500">
-              <span>Algoritmo Siri & Brozek DEXA</span>
-              <span className="text-emerald-400 font-bold">{processingProgress}%</span>
+              <span>Algoritmos Siri, Brozek & U.S. Navy</span>
+              <span className="text-emerald-700 font-bold">{processingProgress}%</span>
             </div>
           </div>
         )}
@@ -413,16 +415,16 @@ export default function ScannerPage() {
         {step === 4 && (
           <div className="space-y-6">
             {/* Top Success Strip */}
-            <div className="rounded-xl border border-emerald-500/40 bg-emerald-950/20 p-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4 flex flex-wrap items-center justify-between gap-3 shadow-sm">
               <div className="flex items-center gap-2.5">
-                <div className="h-8 w-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 border border-emerald-500/40">
+                <div className="h-8 w-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700 border border-emerald-200">
                   <CheckCircle2 className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-white">
-                    Escaneamento 3D Concluído com Sucesso!
+                  <div className="text-sm font-bold text-slate-900">
+                    Escaneamento Concluído com Sucesso
                   </div>
-                  <div className="text-xs text-emerald-400/80 font-mono-tech">
+                  <div className="text-xs text-emerald-800 font-mono-tech font-medium">
                     Precisão óptica estimada: {scanResult.confidenceScorePercent}% • Código do Laudo: {scanResult.id}
                   </div>
                 </div>
@@ -431,7 +433,7 @@ export default function ScannerPage() {
               <div className="flex items-center gap-2">
                 <Link
                   href="/dossie"
-                  className="flex items-center gap-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 px-4 py-2 text-xs font-bold text-slate-950 shadow-md shadow-emerald-500/20 transition-all cursor-pointer"
+                  className="flex items-center gap-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-colors cursor-pointer"
                 >
                   <FileText className="h-4 w-4" />
                   <span>Imprimir Dossiê Editorial 9pt</span>
@@ -440,7 +442,7 @@ export default function ScannerPage() {
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs font-medium text-slate-300 hover:bg-slate-800 transition-colors"
+                  className="flex items-center gap-1 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
                 >
                   <RotateCcw className="h-3.5 w-3.5" />
                   <span>Novo Scan</span>
@@ -460,55 +462,55 @@ export default function ScannerPage() {
 
               <div className="lg:col-span-5 space-y-4">
                 {/* Summary Box */}
-                <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
-                  <h3 className="text-base font-bold text-white mb-2">Diagnóstico Sintético</h3>
-                  <div className="text-xs text-slate-300 leading-relaxed space-y-2">
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <h3 className="text-base font-bold text-slate-900 mb-2">Diagnóstico Sintético</h3>
+                  <div className="text-xs text-slate-600 leading-relaxed space-y-2 font-sans">
                     <p>
-                      O paciente <strong>{scanResult.patientName}</strong> possui <strong>{scanResult.biomarkers.bodyFatPercentage}% de gordura corporal</strong>, totalizando <strong>{scanResult.biomarkers.fatMassKg} kg de tecido adiposo</strong> e <strong>{scanResult.biomarkers.leanMassKg} kg de massa livre de gordura</strong>.
+                      O paciente <strong>{scanResult.patientName}</strong> apresenta <strong>{scanResult.biomarkers.bodyFatPercentage}% de gordura corporal</strong>, correspondendo a <strong>{scanResult.biomarkers.fatMassKg} kg de massa adiposa</strong> e <strong>{scanResult.biomarkers.leanMassKg} kg de massa livre de gordura</strong>.
                     </p>
                     <p>
-                      A relação cintura/quadril ({scanResult.biomarkers.waistToHipRatio}) e o índice de gordura visceral (Nível {scanResult.biomarkers.visceralFatLevel}) apontam baixo risco para desfechos metabólicos adversos.
+                      A relação cintura/quadril ({scanResult.biomarkers.waistToHipRatio}) e a taxa de gordura visceral (Nível {scanResult.biomarkers.visceralFatLevel}) apontam baixo risco cardiovascular, com excelente simetria postural.
                     </p>
                   </div>
                 </div>
 
                 {/* Perímetros Table */}
-                <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
-                  <div className="text-xs font-bold text-white uppercase font-mono-tech mb-3">
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="text-xs font-bold text-slate-900 uppercase font-mono-tech mb-3">
                     Perimetria Óptica Calculada (cm)
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs font-mono-tech">
-                    <div className="p-2 rounded bg-slate-950 border border-slate-800 flex justify-between">
-                      <span className="text-slate-400">Pescoço:</span>
-                      <span className="text-white font-bold">{scanResult.measurements.neck} cm</span>
+                    <div className="p-2 rounded bg-slate-50 border border-slate-200 flex justify-between">
+                      <span className="text-slate-500">Pescoço:</span>
+                      <span className="text-slate-900 font-bold">{scanResult.measurements.neck} cm</span>
                     </div>
-                    <div className="p-2 rounded bg-slate-950 border border-slate-800 flex justify-between">
-                      <span className="text-slate-400">Tórax:</span>
-                      <span className="text-white font-bold">{scanResult.measurements.chest} cm</span>
+                    <div className="p-2 rounded bg-slate-50 border border-slate-200 flex justify-between">
+                      <span className="text-slate-500">Tórax:</span>
+                      <span className="text-slate-900 font-bold">{scanResult.measurements.chest} cm</span>
                     </div>
-                    <div className="p-2 rounded bg-slate-950 border border-slate-800 flex justify-between">
-                      <span className="text-slate-400">Cintura:</span>
-                      <span className="text-emerald-400 font-bold">{scanResult.measurements.waist} cm</span>
+                    <div className="p-2 rounded bg-slate-50 border border-slate-200 flex justify-between">
+                      <span className="text-slate-500">Cintura:</span>
+                      <span className="text-emerald-700 font-bold">{scanResult.measurements.waist} cm</span>
                     </div>
-                    <div className="p-2 rounded bg-slate-950 border border-slate-800 flex justify-between">
-                      <span className="text-slate-400">Abdômen:</span>
-                      <span className="text-white font-bold">{scanResult.measurements.abdomen} cm</span>
+                    <div className="p-2 rounded bg-slate-50 border border-slate-200 flex justify-between">
+                      <span className="text-slate-500">Abdômen:</span>
+                      <span className="text-slate-900 font-bold">{scanResult.measurements.abdomen} cm</span>
                     </div>
-                    <div className="p-2 rounded bg-slate-950 border border-slate-800 flex justify-between">
-                      <span className="text-slate-400">Quadril:</span>
-                      <span className="text-white font-bold">{scanResult.measurements.hips} cm</span>
+                    <div className="p-2 rounded bg-slate-50 border border-slate-200 flex justify-between">
+                      <span className="text-slate-500">Quadril:</span>
+                      <span className="text-slate-900 font-bold">{scanResult.measurements.hips} cm</span>
                     </div>
-                    <div className="p-2 rounded bg-slate-950 border border-slate-800 flex justify-between">
-                      <span className="text-slate-400">Braço D:</span>
-                      <span className="text-white font-bold">{scanResult.measurements.bicepsRight} cm</span>
+                    <div className="p-2 rounded bg-slate-50 border border-slate-200 flex justify-between">
+                      <span className="text-slate-500">Braço D:</span>
+                      <span className="text-slate-900 font-bold">{scanResult.measurements.bicepsRight} cm</span>
                     </div>
-                    <div className="p-2 rounded bg-slate-950 border border-slate-800 flex justify-between">
-                      <span className="text-slate-400">Coxa D:</span>
-                      <span className="text-white font-bold">{scanResult.measurements.thighRight} cm</span>
+                    <div className="p-2 rounded bg-slate-50 border border-slate-200 flex justify-between">
+                      <span className="text-slate-500">Coxa D:</span>
+                      <span className="text-slate-900 font-bold">{scanResult.measurements.thighRight} cm</span>
                     </div>
-                    <div className="p-2 rounded bg-slate-950 border border-slate-800 flex justify-between">
-                      <span className="text-slate-400">Panturrilha D:</span>
-                      <span className="text-white font-bold">{scanResult.measurements.calfRight} cm</span>
+                    <div className="p-2 rounded bg-slate-50 border border-slate-200 flex justify-between">
+                      <span className="text-slate-500">Panturrilha D:</span>
+                      <span className="text-slate-900 font-bold">{scanResult.measurements.calfRight} cm</span>
                     </div>
                   </div>
                 </div>

@@ -2,20 +2,20 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'BodyMap — Mapeamento Corporal 3D & Bioantropometria por IA',
+  title: 'BodyMap — Software de Nutrição Clínica & Avaliação Corporal 3D',
   description:
-    'A evolução da avaliação antropométrica clínica: De 2 fotos de smartphone para um mapeamento 3D milimétrico, % de gordura, massa magra e risco metabólico com 98.4% de correlação DEXA.',
+    'Software para nutricionistas: prescrição dietética ultrarrápida em < 10 minutos (base TACO), avaliação antropométrica 3D por fotos com precisão DEXA, aplicativo para o paciente e gestão completa de consultório.',
   keywords: [
     'bodymap',
-    'body3d',
+    'software nutricionista',
+    'programa de nutricao',
+    'webdiet alternativa',
+    'prescricao dietetica',
+    'tabela taco',
     'antropometria 3d',
-    'bioantropometria',
-    'avaliacao corporal por foto',
-    'percentual de gordura ia',
-    'software para nutricionista',
-    'composicao corporal 3d',
+    'aplicativo paciente nutricao',
   ],
-  authors: [{ name: 'BodyMap Technologies' }],
+  authors: [{ name: 'BodyMap Software Clínico' }],
   icons: {
     icon: '/favicon.ico',
   },
@@ -25,7 +25,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#090d16',
+  themeColor: '#ffffff',
 };
 
 export default function RootLayout({
@@ -34,16 +34,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className="scroll-smooth">
+    <html lang="pt-BR" className="scroll-smooth bg-[#f8fafc]">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-slate-950">
+      <body className="min-h-screen bg-[#f8fafc] text-slate-900 selection:bg-emerald-100 selection:text-emerald-900 antialiased font-sans">
         {children}
       </body>
     </html>

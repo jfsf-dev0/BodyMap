@@ -15,15 +15,8 @@ import {
   Utensils,
   Smartphone,
   FileText,
-  Sparkles,
-  Zap,
   ArrowRight,
-  CheckCircle2,
-  Check,
   GraduationCap,
-  Layers,
-  Activity,
-  HeartPulse,
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -31,45 +24,39 @@ export default function HomePage() {
   const followupScan = sampleScans[1];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 selection:bg-emerald-600 selection:text-white">
       <Navbar />
 
       {/* ============================================================ */}
-      {/* HERO SECTION: DIRECT HEAD-TO-HEAD WITH WEBDIET              */}
+      {/* HERO SECTION: DIRECT POSITIONING & CLINICAL SPEED            */}
       {/* ============================================================ */}
-      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-slate-800/80 bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
-        <div className="absolute inset-0 bg-grid-tech-dark opacity-40 pointer-events-none" />
-
+      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-slate-200 bg-white bg-grid-software">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            {/* Direct Battle Pill */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 px-4 py-1.5 text-xs font-mono-tech text-emerald-400 mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span>A Nova Geração que veio substituir o WebDiet • Prescrição em &lt; 10 min + 3D IA</span>
+            {/* Positioning Tag */}
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-4 py-1.5 text-xs font-mono-tech text-emerald-800 font-semibold mb-6 shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-emerald-600" />
+              <span>Plataforma Clínica de Alta Precisão • Prescrição em &lt; 10 min + 3D Óptico</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
               O Software de Nutrição que{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                Redefine o seu Consultório
+              <span className="text-emerald-700">
+                Eleva o Nível do seu Consultório
               </span>
             </h1>
 
             {/* Sub-headline */}
-            <p className="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto font-sans">
-              Prescrição dietética ágil em menos de 10 minutos (base TACO/TBCA), Mapeamento Corporal 3D por fotos com Inteligência Artificial, Dossiê Editorial em 9pt, Prontuário Inteligente e o Aplicativo Mobile mais sofisticado do mercado para seus pacientes.
+            <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto font-sans">
+              Prescrição dietética ágil em menos de 10 minutos (base TACO oficial), bioantropometria corporal 3D calibrada por fotos, dossiê editorial impresso em 9pt e aplicativo móvel com diário fotográfico integrado para seus pacientes.
             </p>
 
             {/* Action CTAs */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 font-mono-tech">
               <Link
                 href="/consultorio"
-                className="flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-6 py-3.5 text-xs font-bold text-slate-950 shadow-lg shadow-emerald-500/25 transition-all cursor-pointer"
+                className="flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 py-3.5 text-xs font-semibold text-white shadow-sm transition-colors cursor-pointer"
               >
                 <Utensils className="h-4 w-4" />
                 <span>Acessar Consultório Demo</span>
@@ -77,37 +64,37 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/scanner"
-                className="flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/80 hover:bg-slate-800 px-5 py-3.5 text-xs font-semibold text-slate-200 backdrop-blur-sm transition-all"
+                className="flex items-center gap-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 px-5 py-3.5 text-xs font-semibold text-slate-700 shadow-sm transition-colors"
               >
-                <Scan className="h-4 w-4 text-cyan-400" />
-                <span>Testar Scanner 3D Grátis</span>
+                <Scan className="h-4 w-4 text-emerald-700" />
+                <span>Testar Scanner 3D</span>
               </Link>
               <Link
                 href="/graduacao"
-                className="flex items-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-950/20 px-4 py-3.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-950/40 transition-colors"
+                className="flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 px-4 py-3.5 text-xs font-semibold text-emerald-800 transition-colors"
               >
                 <GraduationCap className="h-4 w-4" />
-                <span>Sou Estudante (Grátis)</span>
+                <span>Plano Graduação (Gratuito)</span>
               </Link>
             </div>
 
             {/* Key Advantages Strip */}
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800/80 pt-8 text-left font-mono-tech">
-              <div className="border-l border-emerald-500/40 pl-3">
-                <div className="text-xl sm:text-2xl font-bold text-white tabular-nums">&lt; 10 min</div>
-                <div className="text-xs text-slate-400 mt-0.5">Tempo Médio de Prescrição</div>
+            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 pt-8 text-left font-mono-tech">
+              <div className="border-l-2 border-emerald-600 pl-3">
+                <div className="text-xl sm:text-2xl font-bold text-slate-900 tabular-nums">&lt; 10 min</div>
+                <div className="text-xs text-slate-500 mt-0.5">Tempo Médio de Prescrição</div>
               </div>
-              <div className="border-l border-emerald-500/40 pl-3">
-                <div className="text-xl sm:text-2xl font-bold text-emerald-400 tabular-nums">3D Nativo</div>
-                <div className="text-xs text-slate-400 mt-0.5">Sem Taxa Abusiva Black</div>
+              <div className="border-l-2 border-emerald-600 pl-3">
+                <div className="text-xl sm:text-2xl font-bold text-emerald-700 tabular-nums">3D Incluso</div>
+                <div className="text-xs text-slate-500 mt-0.5">Sem Taxas Extras de Módulo</div>
               </div>
-              <div className="border-l border-emerald-500/40 pl-3">
-                <div className="text-xl sm:text-2xl font-bold text-cyan-400 tabular-nums">Dossiê 9pt</div>
-                <div className="text-xs text-slate-400 mt-0.5">Padrão Editorial MetricLab</div>
+              <div className="border-l-2 border-emerald-600 pl-3">
+                <div className="text-xl sm:text-2xl font-bold text-slate-900 tabular-nums">Dossiê 9pt</div>
+                <div className="text-xs text-slate-500 mt-0.5">Padrão Editorial MetricLab</div>
               </div>
-              <div className="border-l border-emerald-500/40 pl-3">
-                <div className="text-xl sm:text-2xl font-bold text-white tabular-nums">PWA Apple</div>
-                <div className="text-xs text-slate-400 mt-0.5">App com Diário Fotográfico</div>
+              <div className="border-l-2 border-emerald-600 pl-3">
+                <div className="text-xl sm:text-2xl font-bold text-slate-900 tabular-nums">PWA Apple</div>
+                <div className="text-xs text-slate-500 mt-0.5">App com Diário Fotográfico</div>
               </div>
             </div>
           </div>
@@ -115,24 +102,24 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* DIRECT HEAD-TO-HEAD COMPARISON (WHY MIGRATE FROM WEBDIET)    */}
+      {/* DIRECT HEAD-TO-HEAD COMPARISON                              */}
       {/* ============================================================ */}
       <HeadToHeadComparison />
 
       {/* ============================================================ */}
       {/* PILLAR 1: LIVE TACO MEAL PLANNER IN ACTION                   */}
       {/* ============================================================ */}
-      <section className="py-16 lg:py-24 border-t border-slate-800/80">
+      <section className="py-16 lg:py-24 border-t border-slate-200 bg-slate-50/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="text-xs font-mono-tech uppercase tracking-wider text-emerald-400 font-semibold">
-              Pilar 1 • Prescrição Clínica Ágil
+            <span className="text-xs font-mono-tech uppercase tracking-wider text-emerald-700 font-semibold">
+              Módulo 1 • Prescrição Clínica Ágil
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white mt-1">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-1">
               Monte o Cardápio Completo Durante a Consulta
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-2">
-              Esqueça ter que finalizar a dieta de madrugada depois que o paciente foi embora. Com o cálculo em tempo real e a base TACO integrada, você fecha o plano em menos de 10 minutos.
+            <p className="text-xs sm:text-sm text-slate-600 mt-2">
+              Evite passar madrugadas finalizando dietas pendentes. Com o cálculo em tempo real e a base TACO integrada, o plano alimentar sai concluído em menos de 10 minutos.
             </p>
           </div>
 
@@ -148,7 +135,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* PILLAR 3: PATIENT MOBILE APP EXPERIENCE                      */}
       {/* ============================================================ */}
-      <section className="py-16 lg:py-24 border-t border-slate-800/80 bg-slate-900/40">
+      <section className="py-16 lg:py-24 border-t border-slate-200 bg-slate-50/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <PatientAppSimulator />
         </div>
@@ -157,17 +144,17 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* PILLAR 4: TEMPORAL EVOLUTION COMPARATOR                      */}
       {/* ============================================================ */}
-      <section className="py-16 lg:py-20 border-t border-slate-800/80">
+      <section className="py-16 lg:py-20 border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-mono-tech uppercase tracking-wider text-emerald-400 font-semibold">
-              Fidelização & Prova de Resultados
+            <span className="text-xs font-mono-tech uppercase tracking-wider text-emerald-700 font-semibold">
+              Fidelização & Métricas
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
               Comparador Morfológico Temporal
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
-              Mostre ao paciente exatamente quantos centímetros e quilos de gordura foram eliminados com o comparador interativo de evolução.
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              Demonstre objetivamente ao paciente a evolução de centímetros e redução de gordura com a visualização comparativa lado a lado.
             </p>
           </div>
 
@@ -176,29 +163,29 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* STUDENT FUNNEL CALLOUT (CHALLENGING WEBDIET GRADUAÇÃO)       */}
+      {/* STUDENT FUNNEL CALLOUT                                       */}
       {/* ============================================================ */}
-      <section className="py-12 border-t border-slate-800/80 bg-emerald-950/20">
+      <section className="py-14 border-t border-slate-200 bg-emerald-50/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-emerald-500/40 bg-slate-950/80 p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="rounded-2xl border border-emerald-200 bg-white p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
             <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-[11px] font-mono-tech text-emerald-300 font-bold">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-[11px] font-mono-tech text-emerald-800 font-bold">
                 <GraduationCap className="h-4 w-4" />
                 <span>PLANO GRADUAÇÃO 100% GRATUITO</span>
               </div>
-              <h3 className="text-2xl font-bold text-white">
-                É estudante de Nutrição? O BodyMap é gratuito até você se formar!
+              <h3 className="text-2xl font-bold text-slate-900">
+                É estudante de Nutrição? O BodyMap é gratuito até a sua formatura.
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
-                Tenha acesso à base TACO, prescrição em tempo real e ao Scanner 3D para atender seus pacientes de estágio. Sem marcas d`água feias e com transição facilitada após a formatura.
+              <p className="text-xs sm:text-sm text-slate-600 font-sans leading-relaxed">
+                Tenha acesso à base TACO, prescrição em tempo real e ao Scanner 3D para atender seus pacientes de estágio e clínica-escola. Sem marcas d`água invasivas e com transição facilitada para o plano profissional.
               </p>
             </div>
 
             <Link
               href="/graduacao"
-              className="shrink-0 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-6 py-3.5 text-xs font-bold text-slate-950 shadow-lg shadow-emerald-500/20 transition-all font-mono-tech cursor-pointer"
+              className="shrink-0 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 py-3.5 text-xs font-semibold text-white shadow-sm transition-colors font-mono-tech cursor-pointer"
             >
-              Ativar Minha Conta de Estudante ➜
+              Ativar Acesso de Estudante ➜
             </Link>
           </div>
         </div>

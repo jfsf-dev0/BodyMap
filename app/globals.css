@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --font-serif: "Newsreader", Georgia, serif;
+    --font-mono: "SF Mono", "Fira Code", monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #0f172a;
+    background-color: #f8fafc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.font-serif-title {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono), monospace;
+}
+
+.hairline-b {
+  border-bottom: 0.5px solid #e2e8f0;
+}
+
+.hairline-t {
+  border-top: 0.5px solid #e2e8f0;
+}
+
+.hairline-all {
+  border: 0.5px solid #e2e8f0;
+}
+
+.hairline-dark {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scanner Laser Animation */
+@keyframes scanline {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 96%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.8;
+  }
+}
+
+.animate-scanline {
+  animation: scanline 3.5s ease-in-out infinite;
+}
+
+/* Grid Background for 3D Tech feel */
+.bg-grid-tech {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+}
+
+.bg-grid-tech-dark {
+  background-size: 28px 28px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Folha A4 para preview editorial exato em 9pt */
+.a4-sheet {
+  width: 210mm;
+  min-height: 297mm;
+  background: #ffffff;
+  padding: 12mm 14mm;
+  margin: 0 auto 24px auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+  font-size: 9pt;
+  line-height: 12pt;
+  color: #1e293b;
+  position: relative;
+}
+
+/* Regras de Impressão para 2 Páginas A4 Perfeitas */
+@media print {
+  body {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-container {
+    display: block !important;
+    width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .a4-sheet {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 8mm 10mm !important;
+    width: 100% !important;
+    min-height: auto !important;
+    page-break-after: always;
+    break-after: page;
+    font-size: 8.5pt !important;
+    line-height: 11.5pt !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 6mm 8mm;
+  }
+}
